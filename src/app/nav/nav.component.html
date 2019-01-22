@@ -1,0 +1,26 @@
+ <header class="sidebar-header">
+    <div class="row">
+      <div class="logo col-md-auto">
+        <a routerLink="/" class="logo-expanded" alt="Acetronic"><img width="100" src="assets/images/logoArtboard 1@0.5x.png" alt="AceTronic Logo"></a>
+      </div>
+      <div class="abc">
+         
+     <!--     <a class="btn btn-primary" (click)="toggle(opened)">
+              <i *ngIf="!open" class="material-icons">toggle_off</i>
+              <i *ngIf="open" class="material-icons">toggle_on</i>              
+          </a>-->
+      </div>
+    </div>
+</header>
+<div class="row">
+        <mat-nav-list>
+              <mat-list-item *ngFor="let link of links">
+                   <a matLine>{{ link }}</a>
+                   <button mat-icon-button (click)="showInfo(link)">
+                      <mat-icon>info</mat-icon>
+                   </button>
+                </mat-list-item>
+              </mat-nav-list>
+              
+</div>
+

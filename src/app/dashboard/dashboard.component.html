@@ -1,0 +1,15 @@
+
+    <mat-sidenav-container class="page-container">
+        <mat-sidenav #sidenav mode="side" opened>
+          
+        
+                <app-nav></app-nav>
+        </mat-sidenav>
+        <mat-sidenav-content>
+       
+           <button class='btn' mat-button (click)="sidenav.toggle()"><i mat-icon *ngIf="!opened" class="material-icons">toggle_off</i>
+            <i mat-icon *ngIf="opened" class="material-icons">toggle_on</i>     </button>
+            <router-outlet></router-outlet>       
+      </mat-sidenav-content>
+       
+    </mat-sidenav-container>

@@ -1,0 +1,21 @@
+.mat-drawer {
+    background-color: #000;
+    font-family: Montserrat,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    position: fixed;    
+    top: 0;    
+    bottom: 0;    
+    left: 0;    
+    z-index: 4;    
+    width: 250px;    
+    height: 100vh;    
+    box-shadow: 2px 10px 30px 0 rgba(0,0,0,.42),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);    
+    transition: width .3s cubic-bezier(0,0,.2,1);    
+    -webkit-transform: translate3d(0,0,0);    
+    transform: translate3d(0,0,0);    
+    white-space: nowrap;    
+    visibility: visible;
+
+    .logo {
+        padding:20px 40px;
+    }
+}
