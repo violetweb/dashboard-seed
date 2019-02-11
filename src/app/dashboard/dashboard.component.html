@@ -20,15 +20,14 @@
                             <button *ngIf="loggedIn" mat-icon-button><mat-icon class="material-icons">person</mat-icon></button>
                             <mat-menu #loggedInMenu="matMenu" yPosition="above">
                                     <button mat-menu-item>Profile</button>
-                                    <button mat-menu-item>Log Off {{ name }}</button>                                    
+                                    <button mat-menu-item (click)="logOff()">Log Off {{ name }}</button>                                    
                                   </mat-menu>
                                   
                             
                         </nav>                       
-                       
+                      
                  </div>
-            <router-outlet></router-outlet> 
-           
+                 <router-outlet></router-outlet>  
       </mat-sidenav-content>
        
     </mat-sidenav-container>

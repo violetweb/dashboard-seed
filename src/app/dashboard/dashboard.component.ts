@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenavModule, MatMenuModule } from '@angular/material';
+import { User } from '../user';
+import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../user.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,9 +17,16 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenavModule;
   @ViewChild('menu') menu: MatMenuModule;
 
+  currentUser: User;
+  currentUserSubscription: Subscription;
   opened: boolean;
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private router: Router
+) {
+}
 
   ngOnInit() {
     this.opened = true;
@@ -22,5 +34,11 @@ export class DashboardComponent implements OnInit {
 
   onPositionChanged() {
     this.opened = !this.opened;
+  }
+
+  logOff() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+
   }
 }

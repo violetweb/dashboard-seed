@@ -29,6 +29,7 @@ import { FileDetector } from 'protractor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConnexComponent } from './connex/connex.component';
 import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     PopupComponent,
     DashboardComponent,
     ConnexComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

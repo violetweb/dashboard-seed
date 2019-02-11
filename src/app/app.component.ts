@@ -2,6 +2,9 @@ import { Component, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { PopupService } from './popup/popup.service';
 import { PopupComponent } from './popup/popup.component';
+import { User } from './user';
+import { AuthenticationService } from './authentication.service';
+import { Router } from '@angular/router';
 
 
 
@@ -13,14 +16,25 @@ import { PopupComponent } from './popup/popup.component';
 export class AppComponent {
 
 
- title = 'ang-cs';
- 
+    title = 'ang-cs';
+    currentUser: User;
 
-  constructor(injector: Injector, public popup: PopupService) {
-    // Convert `PopupComponent` to a custom element.
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService,
+        injector: Injector, public popup: PopupService
+    ) {
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+          // Convert `PopupComponent` to a custom element.
     const PopupElement = createCustomElement(PopupComponent, {injector});
     // Register the custom element with the browser.
     customElements.define('popup-element', PopupElement);
-  }
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
+    }
+
 
 }
