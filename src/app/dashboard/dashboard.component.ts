@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenavModule } from '@angular/material';
+import { MatSidenavModule, MatMenuModule } from '@angular/material';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,7 @@ import { MatSidenavModule } from '@angular/material';
 export class DashboardComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav: MatSidenavModule;
+  @ViewChild('menu') menu: MatMenuModule;
 
   opened: boolean;
 
@@ -20,6 +22,5 @@ export class DashboardComponent implements OnInit {
 
   onPositionChanged() {
     this.opened = !this.opened;
-    console.log('position changed');
   }
 }

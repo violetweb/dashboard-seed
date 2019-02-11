@@ -6,10 +6,29 @@
                 <app-nav></app-nav>
         </mat-sidenav>
         <mat-sidenav-content>
-       
-           <button class='btn' mat-button (click)="sidenav.toggle()"><i mat-icon *ngIf="!opened" class="material-icons">toggle_off</i>
-            <i mat-icon *ngIf="opened" class="material-icons">toggle_on</i>     </button>
-            <router-outlet></router-outlet>       
+          
+                <div class="d-flex flex-column flex-md-row align-items-left p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+                      
+                        <button class="mr-md-auto" mat-button (click)="sidenav.toggle()"><i mat-icon *ngIf="!opened" class="material-icons">view_headline</i>
+                            <i mat-icon *ngIf="opened" class="material-icons">view_headline</i>
+                        </button>
+                        <nav class="my-2 my-md-0 mr-md-3 align-items-right">
+                            <button mat-button><i mat-icon *ngIf="opened" class="material-icons">favorite</i></button>                               
+                            <button mat-button><i mat-icon class="material-icons">notifications</i></button>
+                            <button mat-button><i mat-icon class="material-icons">help</i></button>
+                            <button *ngIf="!loggedIn" mat-button [matMenuTriggerData]="{name: 'Valerie'}" [matMenuTriggerFor]="loggedInMenu"><img style="max-width:100%; width:40px; border-radius: 50%;" src="assets/images/face-7.jpg"></button>
+                            <button *ngIf="loggedIn" mat-icon-button><mat-icon class="material-icons">person</mat-icon></button>
+                            <mat-menu #loggedInMenu="matMenu" yPosition="above">
+                                    <button mat-menu-item>Profile</button>
+                                    <button mat-menu-item>Log Off {{ name }}</button>                                    
+                                  </mat-menu>
+                                  
+                            
+                        </nav>                       
+                       
+                 </div>
+            <router-outlet></router-outlet> 
+           
       </mat-sidenav-content>
        
     </mat-sidenav-container>

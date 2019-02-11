@@ -1,0 +1,45 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel>
+        <ng-template ngbPanelTitle>
+            <span>&#9733; <b>Registrants</b> &#9733;</span>
+          </ng-template>
+      <ng-template ngbPanelContent>
+        <div style="display:inline-block;" class="col-3">
+          <h3>AceConnex Registrants</h3>
+          <table matSort (matSortChange)="sortData($event)">
+              <tr>
+                <th mat-sort-header="id">Id</th>
+                <th mat-sort-header="no_guests">No Guests</th>
+                <th mat-sort-header="lunch">Lunch</th>
+                <th mat-sort-header="dinner">Dinner</th>
+                <th>Company</th>
+                <th>Phone</th>
+                <th>Ext</th>
+                <th>Email</th>                
+                <th>Contact Info</th>
+                <th>Interests</th>
+                <th>Comments</th>
+                <th mat-sort-header="collection_date">Collected</th>              
+              </tr>
+            
+              <tr *ngFor="let item of dataSource">
+                <td class="text-center">{{item.id}}</td>
+                <td class="text-center"><label class="label">
+                  {{item.no_guests}}</label></td>
+                <td class="text-center"><label class="label" [ngClass]="{'label-success': item.lunch === '1', 'label-red': item.lunch === '0'}"><i mat-icon *ngIf="item.lunch === '1'" class="material-icons">done</i><i mat-icon *ngIf="item.lunch === '0'" class="material-icons">clear</i></label></td>
+                <td class="text-center"><label class="label" [ngClass]="{'label-success': item.dinner === '1', 'label-red': item.dinner === '0'}"><i mat-icon *ngIf="item.dinner === '1'" class="material-icons">done</i><i mat-icon *ngIf="item.dinner === '0'" class="material-icons">clear</i></label></td>
+                <td>{{item.customer_company}}</td>                            
+                <td>{{item.phone}}</td>
+                <td>{{item.ext}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.contact_name}}</td>
+                <td>{{item.interest_hotrunner}} | {{item.interest_cables}} | {{item.interest_heating }} | {{item.interest_mold }} | {{item.interest_temp}} | {{item.interest_flow}}</td>
+                <td>{{item.comments}}</td>
+                <td>{{item.collection_date}}</td>
+               </tr>
+            </table>
+          </div>
+      </ng-template>
+    </ngb-panel>
+
+</ngb-accordion>

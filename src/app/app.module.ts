@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule, MatSortModule, MatFormFieldModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +27,8 @@ import { PopupComponent } from './popup/popup.component';
 import { PopupService } from './popup/popup.service';
 import { FileDetector } from 'protractor';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConnexComponent } from './connex/connex.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AboutComponent,
     HomeComponent,
     PopupComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConnexComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     PopupService

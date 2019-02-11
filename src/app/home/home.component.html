@@ -1,8 +1,50 @@
 
                 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel>
+                        <ng-template ngbPanelTitle>
+                            <span>&#9733; <b>Customer Survey</b> Results at a Glance &#9733;</span>
+                          </ng-template>
+                      <ng-template ngbPanelContent>
+                        <div style="display:inline-block;" class="col-3">
+                          <h3>Quote Provided Timely</h3>
+                          <canvas baseChart
+                                      [data]="doughnutChartDataQuotetimely"
+                                      [labels]="doughnutChartLabels"
+                                      [colors]="doughnutColors"
+                                      [chartType]="doughnutChartType"></canvas>
+                        </div>
+                        <div style="display:inline-block;" class="col-3">
+                          <h3>Client would recommend</h3>
+                          <canvas baseChart
+                                      [data]="doughnutChartDataRecommend"
+                                      [labels]="doughnutChartLabels"
+                                      [colors]="doughnutColors"
+                                      [chartType]="doughnutChartType"></canvas>
+                        </div>
+                  
+                        <div style="display:inline-block;" class="col-3">
+                          <h3>Product Quality</h3>
+                          <canvas baseChart
+                                      [data]="doughnutChartDataProductquality"
+                                      [labels]="doughnutChartLabels"
+                                      [colors]="doughnutColors"
+                                      [chartType]="doughnutChartType"></canvas>
+                        </div>
+                        <div style="display:inline-block" class="col-3">
+                          <h3>Satisfaction Scale</h3>
+                          <canvas baseChart
+                            [chartType]="barChartType"
+                            [labels]="barChartLabels"                           
+                            [data]="barChartSatisfaction">
+                           </canvas>
+                        </div>
+                            
+                      </ng-template>
+                    </ngb-panel>
+
                     <ngb-panel title="Simple">
                       <ng-template ngbPanelTitle>
-                        <span>&#9733;Survey Results</span>
+                        <span>&#9733;Customer Survey Detail</span>
                       </ng-template>
                       <ng-template ngbPanelContent>
 
@@ -13,74 +55,32 @@
                             <th mat-sort-header="satisfaction">Satisfaction</th>
                             <th mat-sort-header="productquality">Product Quality</th>
                             <th mat-sort-header="quotetimely">Quote Timely</th>
+                            <th>Contact Info</th>
+                            <th>Comments</th>
+                            <th mat-sort-header="collected">Collected</th>
                           
                           </tr>
                         
-                          <tr *ngFor="let dessert of dataSource">
-                            <td>{{dessert.id}}</td>
-                            <td>{{dessert.satisfaction}}</td>
-                            <td>{{dessert.productquality}}</td>
-                            <td>{{dessert.quotetimely}}</td>
-                          
-                          </tr>
+                          <tr *ngFor="let item of dataSource">
+                            <td class="text-center">{{item.ID}}</td>
+                            <td class="text-center"><label class="label">
+                              {{item.satisfaction}}</label></td>
+                            <td class="text-center"><label class="label" [ngClass]="{'label-success': item.productquality === 'Yes', 'label-red': item.productquality === 'No'}"><i mat-icon *ngIf="item.productquality === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.productquality === 'No'" class="material-icons">clear</i></label></td>
+                            <td class="text-center"><label class="label" [ngClass]="{'label-success': item.quotetimely === 'Yes', 'label-red': item.quotetimely === 'No'}"><i mat-icon *ngIf="item.quotetimely === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.quotetimely === 'No'" class="material-icons">clear</i></label></td>
+                            <td class="label" [ngClass]="{'label-success': item.contactinfo === 'Yes', 'label-red': item.contactinfo === 'No'}">{{item.contactinfo}}</td>
+                            <td>{{item.comments}}</td>
+                            <td>{{item.collected}}</td>
+                           </tr>
                         </table>
                         
 
-                          <table class="table" *ngIf="surveyresults">
-                              <tr>
-                              
-                                <th>Quote</th>
-                                <th>Quotes on Time?</th>
-                                <th>Product Quality Good?</th>
-                                <th>Satisfaction (Scale 1-5)</th>
-                                <th>Would you recommend?</th>
-                                <th>Contact Info</th>
-                                <th>Comments</th>
-                              </tr>
-                              <tr *ngFor="let result of surveyresults.data">        
-                                <td>{{ result.id }}</td>
-                                <td>{{ result.quotetimely }}</td>
-                                <td>{{ result.recommend }}</td>
-                                <td>{{ result.satisfaction }}</td>
-                                <td>{{ result.productquality }}</td>
-                                <td>{{ result.contactinfo }}</td>
-                                <td>{{ result.comments }}</td>
-                              </tr>
-                            </table>
                       </ng-template>
                     </ngb-panel>
-                    <ngb-panel>
-                      <ng-template ngbPanelTitle>
-                        <span>&#9733; <b>Fancy</b> title &#9733;</span>
-                      </ng-template>
-                      <ng-template ngbPanelContent>
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-                        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                        labore sustainable VHS.
-                      </ng-template>
-                    </ngb-panel>
-                    <ngb-panel>
-                        <ng-template ngbPanelTitle>
-                            <span>&#9733; <b>Survey</b> Results &#9733;</span>
-                          </ng-template>
-                      <ng-template ngbPanelContent>
-
                   
-                            
-                      </ng-template>
-                    </ngb-panel>
+                 
                   </ngb-accordion>
             
+                
               
-                  <div style="display: block">
-                      <canvas baseChart
-                                  [data]="doughnutChartData"
-                                  [labels]="doughnutChartLabels"
-                                  [chartType]="doughnutChartType"></canvas>
-                    </div>
-              
-              <button (click)="firstClick()">Click Here</button>
+             
          
