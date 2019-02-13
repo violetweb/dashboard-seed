@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  links = ['', 'About', 'Testing', 'Cables'];
+
   opened: boolean;
 
   constructor(private router: Router) {}
@@ -19,14 +19,6 @@ export class NavComponent implements OnInit {
 
   toggle(open) {
 
-  }
-
-  goHome() {
-    this.router.navigate(['']);
-  }
-
-  goAbout() {
-    this.router.navigate(['about']);
   }
 
 }

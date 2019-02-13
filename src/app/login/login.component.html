@@ -1,8 +1,16 @@
-<div class="container">
-    <div class="row">
-           
-      
-      <h2>Login</h2>
+<div class="container-fluid"  style="padding-top: 8.5rem;">
+
+<app-header></app-header>
+
+   
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-6 col-lg-5">
+        <div class="card p-10">
+        <div class="card-header rounded" data-control="">
+            <h5>Sign In</h5>
+          </div>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <div class="card-body">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
               <label for="username">Email (username)</label>
@@ -24,10 +32,10 @@
               <a [routerLink]="['/register']" class="btn btn-link">Register</a>
           </div>
       </form>
-      
+      </div>
    </div>
     
   </div>
 
-
-
+ 
+</div>

@@ -3,13 +3,13 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('http://customersurvey.acetronic.com/assets/css/xenon-core.css');
 @import "~bootstrap/scss/bootstrap.scss";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
 
 $brand-primary: #d57717;
 $currentColor: #d57717;
+
 
 body, html {
     height: 100%;
