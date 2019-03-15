@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Survey } from './survey';
 import { filter } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -13,7 +14,7 @@ export class DataService {
 
   constructor(private http:  HttpClient) { }
 
-  url = '/api';
+  url = environment.baseUrl;
 
   getSurveyResults() {
       return this.http.get<Survey[]>(this.url + '/customersurvey/all');

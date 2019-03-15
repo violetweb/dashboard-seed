@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenavModule;
   @ViewChild('menu') menu: MatMenuModule;
 
+  loggedIn = true;
   currentUser: User;
   currentUserSubscription: Subscription;
   opened: boolean;
@@ -30,6 +31,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.opened = true;
+    this.loggedIn = (this.authenticationService.currentUser) ? true : false;
+    console.log(this.loggedIn);
   }
 
   onPositionChanged() {
@@ -40,5 +43,8 @@ export class DashboardComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
 
+  }
+  goProfile(){
+    this.router.navigate(['/profile']);
   }
 }

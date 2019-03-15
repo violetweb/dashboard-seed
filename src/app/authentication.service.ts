@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { User } from './user';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class AuthenticationService {
   currentUserSubject: BehaviorSubject<User>;
   currentUser: Observable<User>;
 
-  url = '/api';
+  url = environment.baseUrl;
 
   constructor(private http: HttpClient) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -28,7 +29,7 @@ export class AuthenticationService {
 
 
   login(username: string, password: string) {
-    return this.http.post<any>(this.url + '/users/authenticate', { username, password })
+    return this.http.post<any>(environment.baseUrl + '/users/authenticate', { username, password })
         .pipe(map(data => {
             // login successful if there's a jwt token in the response
             if (data) {

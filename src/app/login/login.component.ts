@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService) {
 
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
           this.router.navigate(['/']);
          }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
         this.loginForm = this.formBuilder.group({
           username: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]]
+          password: ['', [Validators.required, Validators.minLength(5)]]
         });
 
         // reset login status
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     get f() { return this.loginForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
+      this.submitted = true;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);
+                    console.log(data);
                 },
                 error => {
                     this.alertService.error(error);

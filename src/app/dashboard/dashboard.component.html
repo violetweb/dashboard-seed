@@ -16,11 +16,11 @@
                             <button mat-button><i mat-icon *ngIf="opened" class="material-icons">favorite</i></button>                               
                             <button mat-button><i mat-icon class="material-icons">notifications</i></button>
                             <button mat-button><i mat-icon class="material-icons">help</i></button>
-                            <button *ngIf="!loggedIn" mat-button [matMenuTriggerData]="{name: 'Valerie'}" [matMenuTriggerFor]="loggedInMenu"><img style="max-width:100%; width:40px; border-radius: 50%;" src="assets/images/face-7.jpg"></button>
-                            <button *ngIf="loggedIn" mat-icon-button><mat-icon class="material-icons">person</mat-icon></button>
+                            <button *ngIf="loggedIn" mat-button [matMenuTriggerData]="{name: 'Valerie'}" [matMenuTriggerFor]="loggedInMenu"><img style="max-width:100%; width:40px; border-radius: 50%;" src="assets/images/face-7.jpg"></button>
+                            <button *ngIf="!loggedIn" mat-icon-button><mat-icon class="material-icons">person</mat-icon></button>
                             <mat-menu #loggedInMenu="matMenu" yPosition="above">
-                                    <button mat-menu-item>Profile</button>
-                                    <button mat-menu-item (click)="logOff()">Log Off {{ name }}</button>                                    
+                                    <button mat-menu-item (click)="goProfile()">Profile</button>
+                                    <button mat-menu-item (click)="logOff()">Log Off</button>                                    
                                   </mat-menu>
                                   
                             

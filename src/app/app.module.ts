@@ -7,6 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
@@ -31,6 +32,7 @@ import { ConnexComponent } from './connex/connex.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { HeaderComponent } from './header/header.component';
     ConnexComponent,
     LoginComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { HeaderComponent } from './header/header.component';
     MatTableModule,
     MatInputModule,
     MatSortModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
 
   ],
   providers: [
@@ -80,7 +84,8 @@ import { HeaderComponent } from './header/header.component';
     MatMenuModule,
     MatListModule,
     MatFormFieldModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule
   ]
 })
 export class AppModule { }

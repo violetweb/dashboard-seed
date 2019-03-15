@@ -6,6 +6,7 @@ import { AboutComponent } from './about/about.component';
 import { ConnexComponent } from './connex/connex.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '',
@@ -22,6 +23,9 @@ const routes: Routes = [
       { path: 'aceconnex',
         component: ConnexComponent
       },
+      { path: 'profile',
+        component: ProfileComponent
+      }
 
     ]
   },
