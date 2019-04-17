@@ -7,6 +7,7 @@ import { ConnexComponent } from './connex/connex.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { AttendeeComponent } from './attendee/attendee.component';
 
 const routes: Routes = [
   { path: '',
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       { path: 'profile',
         component: ProfileComponent
+      },
+      { path: 'attendee',
+        component: AttendeeComponent
       }
 
     ]

@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-import { MatInputModule, MatSortModule, MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatSortModule, MatFormFieldModule, MatTabsModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -33,6 +33,8 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AttendeeComponent } from './attendee/attendee.component';
+import { SuppliersComponent } from './suppliers/suppliers.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     FooterComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    AttendeeComponent,
+    SuppliersComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatInputModule,
     MatSortModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
 
   ],
   providers: [
@@ -85,7 +90,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatListModule,
     MatFormFieldModule,
     MatSortModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class AppModule { }
