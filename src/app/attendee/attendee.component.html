@@ -101,6 +101,11 @@
                 <td>{{item.Title}}</td>                               
                 <td>{{item.BadgeId}}</td>
                 <td>{{item.CheckInTime}}</td>
+               
+                <td>
+                      <a mat-flat-button color="primary" [routerLink]="['/attendees', item.Id]"><mat-icon>edit</mat-icon></a>
+                      <a mat-flat-button color="warn" (click)="deleteAttendee(item.Id)"><mat-icon>delete</mat-icon></a>
+                </td>
               </tr>
             </table>
           </div>

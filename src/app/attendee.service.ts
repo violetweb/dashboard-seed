@@ -24,7 +24,7 @@ export class AttendeeService {
     return this.http.get(this.url + '/attendee/update/' + $id);
   }
   deleteAttendee($id){
-    return this.http.get(this.url + '/attendee/delete/' + $id);
+    return this.http.post(this.url + '/attendee/delete', { $id } );
   }
 
 }

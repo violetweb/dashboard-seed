@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatIconModule } from '@angular/material';
 import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { AttendeeService } from '../attendee.service';
 import { AlertService } from '../alert.service';
@@ -81,5 +81,25 @@ export class AttendeeComponent implements OnInit {
                 });
     }
 
+      deleteAttendee(id) {
+        this.loading = true;
+        this.attendeeService.deleteAttendee(id)
+          .subscribe(res => {
+              this.deleteRowDataTable(id,"Id",'',this.attendeeDataSource);
+              this.loading = false;
+              this.router.navigate([this.returnUrl]);
+            }, (err) => {
+              console.log(err);
+              this.loading = false;
+            }
+          );
+      }
+
+       private deleteRowDataTable (recordId, idColumn, paginator, dataSource) {
+          this.attendeeDataSource = dataSource.data;
+          const itemIndex = this.attendeeDataSource.findIndex(obj => obj[idColumn] === recordId);
+          dataSource.data.splice(itemIndex, 1);
+          dataSource.paginator = paginator;
+      }
   
 }
