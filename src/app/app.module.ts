@@ -13,11 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule, MatSortModule, MatFormFieldModule, MatTabsModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
-
-
-
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -72,7 +68,9 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     MatSortModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
+  
 
   ],
   providers: [
@@ -91,7 +89,8 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     MatFormFieldModule,
     MatSortModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
   ]
 })
 export class AppModule { }

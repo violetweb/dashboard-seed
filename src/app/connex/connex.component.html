@@ -1,45 +1,146 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
     <ngb-panel>
         <ng-template ngbPanelTitle>
-            <span>&#9733; <b>Registrants</b> &#9733;</span>
+            <span>&#9733; 2019 <b>Registrants</b> &#9733;</span>
           </ng-template>
       <ng-template ngbPanelContent>
         <div style="display:inline-block;" class="col-3">
           <h3>AceConnex Registrants</h3>
-          <table matSort (matSortChange)="sortData($event)">
+          <table matSort (matSortChange)="sortData($event)" class="table table-condensed">
               <tr>
-                <th mat-sort-header="id">Id</th>
-                <th mat-sort-header="no_guests">No Guests</th>
-                <th mat-sort-header="lunch">Lunch</th>
-                <th mat-sort-header="dinner">Dinner</th>
-                <th>Company</th>
-                <th>Phone</th>
+                <th>Id</th>
+                <th>Email</th>
+                <th>No Guests</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+                <th mat-sort-header="customer_company">Company</th>
+                <th>Registrant Information</th>
+            <!--    <th>Phone</th>
                 <th>Ext</th>
                 <th>Email</th>                
-                <th>Contact Info</th>
+                <th>Contact Info</th> -->
                 <th>Interests</th>
                 <th>Comments</th>
                 <th mat-sort-header="collection_date">Collected</th>              
               </tr>
             
-              <tr *ngFor="let item of dataSource">
+              <tr *ngFor="let item of dataSource; index as index;">
                 <td class="text-center">{{item.id}}</td>
+                <td class="text-center">                 
+                  <a mat-flat-button color="primary" (click)="emailRegistrant(item.email)"><mat-icon>email</mat-icon></a>
+                  <select>
+                    <option value="">Select Letter Type</option>
+                    <option value="1">Thank You Letter</option>
+                    <option value="2">Confirmation Letter</option>
+                    <option value="3">Urgent Letter</option>
+                  </select>
+                  <p>Notes: after send this should update with "sent"( button to resend).</p>
+                </td>
                 <td class="text-center"><label class="label">
                   {{item.no_guests}}</label></td>
                 <td class="text-center"><label class="label" [ngClass]="{'label-success': item.lunch === '1', 'label-red': item.lunch === '0'}"><i mat-icon *ngIf="item.lunch === '1'" class="material-icons">done</i><i mat-icon *ngIf="item.lunch === '0'" class="material-icons">clear</i></label></td>
                 <td class="text-center"><label class="label" [ngClass]="{'label-success': item.dinner === '1', 'label-red': item.dinner === '0'}"><i mat-icon *ngIf="item.dinner === '1'" class="material-icons">done</i><i mat-icon *ngIf="item.dinner === '0'" class="material-icons">clear</i></label></td>
-                <td>{{item.customer_company}}</td>                            
-                <td>{{item.phone}}</td>
-                <td>{{item.ext}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.contact_name}}</td>
+                <td><a mat-flat-button color="primary" [routerLink]="['/update',item.id]">SAVE CHANGES</a>
+                  <!-- write it so that when a field "ON - changes" it activates/shows the save changes button-->
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="item.customer_company" placeholder="Company">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="item.contact_name" placeholder="Contact">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-icon><small>phone</small></mat-icon> <input matInput [(ngModel)]="item.phone" placeholder="Phone">
+                  </mat-form-field>                  
+                  <mat-form-field>
+                    <input matInput [(ngModel)]="item.ext" placeholder="Ext">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-icon><small>email</small></mat-icon><input matInput [(ngModel)]="item.email" placeholder="Email">
+                  </mat-form-field>
+              
+               
+                
+             
+             </td>
                 <td>{{item.interest_hotrunner}} | {{item.interest_cables}} | {{item.interest_heating }} | {{item.interest_mold }} | {{item.interest_temp}} | {{item.interest_flow}}</td>
                 <td>{{item.comments}}</td>
-                <td>{{item.collection_date}}</td>
+                <td><small>{{item.collection_date}}</small></td>
                </tr>
+               <tfoot>
+                <tr>
+                    <th></th>
+                    <th scope="row">Totals</th>
+                    <td>{{this.totalRegistered}}</td>
+                    <td>{{this.totalLunch}}</td>
+                    <td>{{this.totalDinner}}</td>
+                </tr>
+            </tfoot>
             </table>
           </div>
       </ng-template>
     </ngb-panel>
-
+    <ngb-panel>
+      <ng-template ngbPanelTitle>
+          <span>&#9733;2019 <b> Feedback</b> &#9733;</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <h4>Participant Survey Feedback</h4>
+            <p>Participants thoughts on AceConnex ... </p>
+          
+            
+                <div style="display:inline-block;" class="col-3">
+                  <h3>Event Rating</h3>
+                  <canvas baseChart
+                              [data]="doughnutFeedbackSatisfaction"
+                              [labels]="doughnutFeedbackLabels"
+                              [colors]="doughnutColors"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+                <div style="display:inline-block;" class="col-3">
+                  <h3>Return Next Year</h3>
+                  <canvas baseChart
+                              [data]="doughnutReturn"
+                              [labels]="doughnutReturnLabels"
+                              [colors]="doughnutColors"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+          
+                <div style="display:inline-block;" class="col-3">
+                  <h3>Networking</h3>
+                  <canvas baseChart
+                              [data]="doughnutNetworking"
+                              [labels]="doughnutNetworkingLabels"
+                              [colors]="doughnutColors"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+                <div style="display:inline-block;" class="col-3">
+                    <h3>Presentations</h3>
+                    <canvas baseChart
+                                [data]="doughnutPresentations"
+                                [labels]="doughnutPresentationsLabels"
+                                [colors]="doughnutColors"
+                                [chartType]="doughnutChartType"></canvas>
+                  </div>
+              
+            </div>
+        
+              
+              <div class="col-12 pt-3">
+                  <h2>What people were saying...</h2>
+                <blockquote>For the size of the event, the day is a little long.</blockquote>
+                <blockquote>The event was amazing, I want it bigger!</blockquote>
+                <blockquote>Would have prefered more time to talk between presentations.</blockquote>
+                <blockquote>Event focused solely on Injection Molding -- Would have loved to see Extrusion!</blockquote>
+                <blockquote>Only 5 min break between Presentations</blockquote>
+                <blockquote>Need More Vendors</blockquote>
+              </div>
+         
+              <div class="col-12 pt-3">
+                <span>&#9733;2019 <b>Exhibitor Feedback</b> &#9733;</span>
+                <a href="https://forms.office.com/Pages/DesignPage.aspx#FormId=xBtVNBKRREaiLbQtSW4TMnJYzYgXqCZIkMJnEkkw1d5UNlgxWUtTRURKUEExSVNSUk5OOVY5SVQ4OS4u&Analysis=true">View Exhibitor Feedback</a>
+                </div>
+           
+              </ng-template>
+            </ngb-panel>
+    
 </ngb-accordion>

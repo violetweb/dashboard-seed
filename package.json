@@ -27,6 +27,7 @@
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "jqwidgets-scripts": "^7.0.0",
+    "dymo": "^2.0.2",
     "ng2-charts": "^1.6.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

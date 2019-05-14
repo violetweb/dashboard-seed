@@ -15,16 +15,17 @@ export class AttendeeService {
   getAttendees() {
       return this.http.get<Attendee[]>(this.url + '/attendee/all');
   }
+
   insertAttendee(fullname, company, title, email, phone){
     //  return this.http.post<any>(this.url + '/attendee/insert',{});
     return this.http.post<any>(environment.baseUrl + '/attendee/insert', { fullname, company,title,email,phone });
 
   }
-  updateAttendee($id){
-    return this.http.get(this.url + '/attendee/update/' + $id);
+  updateAttendee(id){
+    return this.http.get(this.url + '/attendee/update/' + id);
   }
-  deleteAttendee($id){
-    return this.http.post(this.url + '/attendee/delete', { $id } );
+  deleteAttendee(id){
+    return this.http.post(this.url + '/attendee/delete', { id } );
   }
 
 }

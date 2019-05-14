@@ -27,15 +27,26 @@
    <section class="bg-light p-0">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col col-md-10 col-lg-8">
+        <div class="col col-md-10 col-lg-12">
           <mat-tab-group>
 
           <mat-tab label="Record Attendee">
               <h1>Attendee Entry</h1>
                <form [formGroup]="recordAttendeeForm" (ngSubmit)="onAttendeeSubmit()">
+                 <div class="form-group">
+                   <div class="col-md-6">
+                      <div *ngIf="badgeId === ''">
+                        <button id="printButton" disabled class="btn btn-primary">Print Button</button>
+                      </div>
+                      <div *ngIf="badgeId !== ''">
+                          <button id="printButton" (click)="onPrintButton()" class="btn btn-primary">Print Button</button>
+                          <label id="badgeId">{{badgeId}}</label>
+                        </div>
+                    </div>
+                 </div>
                 <div class="form-group">
                     <label for="fullname">Full Name (first name / last name)</label>
-                    <input type="text" formControlName="fullname" placeholder="John Smith" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <input type="text" formControlName="fullname" placeholder="John Smith" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }" />
                     <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
                         <div *ngIf="f.fullname.errors.required">Full Name is required</div>
                     </div>
@@ -78,9 +89,9 @@
             <mat-tab label="List Attendees">
               <h1>Attendee List</h1>
              
-        <div style="display:inline-block;" class="col-3">
-          <h3>AceConnex Attendees</h3>
-          <table matSort (matSortChange)="sortData($event)">
+       
+         
+          <table matSort (matSortChange)="sortData($event)" class="table table-condensed">
               <tr>
                 <th>Id</th>
                 <th>Full Name</th>
@@ -108,7 +119,7 @@
                 </td>
               </tr>
             </table>
-          </div>
+        
    
 
           </mat-tab>
@@ -138,6 +149,20 @@
 
                <textarea name="comments"></textarea>
              <button type="submit">Submit this entry</button>
+            </mat-tab>
+
+
+            <mat-tab label="Print Label">
+              <h3>Print Label for badgeid will go here</h3>                         
+              <mat-card *ngFor="let lab of attendeeLabelSource">
+              <mat-card-title>{{lab.BadgeId}}</mat-card-title>              
+                  <mat-card-content>
+                      {{lab.FullName}}
+                      {{lab.Company}}<br/>                                              
+                    </mat-card-content>
+                      
+                      
+              </mat-card>
             </mat-tab>
         </mat-tab-group>
        
