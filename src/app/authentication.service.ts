@@ -21,14 +21,16 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       this.currentUser = this.currentUserSubject.asObservable();
+      //currentUser is actually a "token";
   }
 
   public get currentUserValue(): User {
       return this.currentUserSubject.value;
   }
 
-
+/*
   login(username: string, password: string) {
+
     return this.http.post<any>(environment.baseUrl + '/users/authenticate', { username, password })
         .pipe(map(data => {
             // login successful if there's a jwt token in the response
@@ -40,8 +42,33 @@ export class AuthenticationService {
 
             return data;
         }));
-}
+  }
+*/
+
+  login(client_id: string, client_secret: string) {
+
+  /*  Here, we are using OAuth to query for a token for this user.
+      1.  send over client_id / client_secret and if they exist in the oauth_clients table, 
+          generates a "token" for use with this session.
+      2.  Token is saved to local Storage.
+  */
+  let grant_type = 'client_credentials';
+   return this.http.post<any>(environment.baseUrl + '/token', {client_id, client_secret, grant_type })
+        .pipe(map(data => {
+            // login successful if there's a jwt token in the response
+            if (data) {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(data.access_token));
+                this.currentUserSubject.next(data);
+                console.log(data);
+            }
+
+            return data;
+        }));
+  }
+
   logout() {
+    this.currentUser = null;
     localStorage.removeItem('currentUser');
   }
 }

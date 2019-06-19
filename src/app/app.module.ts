@@ -11,8 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule, MatSortModule, MatFormFieldModule, MatTabsModule } from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSelectModule} from '@angular/material/select'; 
+
+import { MatInputModule, MatSortModule, MatFormFieldModule, MatTabsModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +34,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
+import { LeadComponent } from './lead/lead.component';
 
 
 @NgModule({
@@ -47,7 +51,8 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     HeaderComponent,
     ProfileComponent,
     AttendeeComponent,
-    SuppliersComponent
+    SuppliersComponent,
+    LeadComponent
   ],
   imports: [
     BrowserModule,
@@ -63,14 +68,17 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     MatMenuModule,
     MatListModule,
     MatFormFieldModule,
-    MatTableModule,
     MatInputModule,
     MatSortModule,
     ReactiveFormsModule,
     MatCardModule,
     MatTabsModule,
-    FormsModule
-  
+    FormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatButtonToggleModule,
+    MatStepperModule,
+    MatSelectModule
 
   ],
   providers: [
@@ -90,7 +98,14 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
     MatSortModule,
     MatCardModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatStepperModule,
+    MatSelectModule
   ]
 })
 export class AppModule { }

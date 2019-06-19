@@ -1,4 +1,4 @@
-export class Attendee {
+export interface Attendee {
     Id: string;
     FullName: string;
     Company: string;

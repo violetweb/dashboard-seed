@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { AttendeeComponent } from './attendee/attendee.component';
+import { LeadComponent } from './lead/lead.component';
 
 const routes: Routes = [
   { path: '',
@@ -29,6 +30,10 @@ const routes: Routes = [
       },
       { path: 'attendee',
         component: AttendeeComponent
+      },
+      {
+        path: 'lead',
+        component:  LeadComponent
       }
 
     ]

@@ -4,4 +4,8 @@ export class User {
     password: string;
     firstname: string;
     lastname: string;
+    client_id: string;
+    client_secret: string;
+    grant_type: string;
+    access_token: string;
 }

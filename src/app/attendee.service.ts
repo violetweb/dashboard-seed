@@ -13,12 +13,12 @@ export class AttendeeService {
   url =  environment.baseUrl;
 
   getAttendees() {
-      return this.http.get<Attendee[]>(this.url + '/attendee/all');
+      return this.http.get<Attendee[]>(this.url + '/attendee/all' );
   }
 
-  insertAttendee(fullname, company, title, email, phone){
+  insertAttendee(fullname, company, title, email, phone) {
     //  return this.http.post<any>(this.url + '/attendee/insert',{});
-    return this.http.post<any>(environment.baseUrl + '/attendee/insert', { fullname, company,title,email,phone });
+    return this.http.post<any>(environment.baseUrl + '/attendee/insert', { fullname, company, title, email, phone });
 
   }
   updateAttendee(id){

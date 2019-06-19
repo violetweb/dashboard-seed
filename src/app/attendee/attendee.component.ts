@@ -57,12 +57,13 @@ export class AttendeeComponent implements OnInit {
 
     getAttendees() {
       this.attendeeService.getAttendees().subscribe(data => {
-        this.attendeeDataSource = data['data'].slice();
-        if (this.badgeId) {
-          this.attendeeLabelSource = this.attendeeDataSource.filter(d =>
-            d.BadgeId === this.badgeId
-          );
-        }
+      this.attendeeDataSource = data['data'].slice();
+      console.log(this.attendeeDataSource);
+      if (this.badgeId) {
+        this.attendeeLabelSource = this.attendeeDataSource.filter(d =>
+          d.BadgeId === this.badgeId
+        );
+      }
       });
 
     }
@@ -84,7 +85,6 @@ export class AttendeeComponent implements OnInit {
                   this.badgeId = data['result'].slice(); //If successfully inserted, the "result = > badgeId is returned"
                   if (this.badgeId !== '') {
                     this.doLabel();
-                    
                     this.labelText = this.badgeId;
                     this.labelText  += '<br/>' + this.attendeeLabelSource.fullname;
                     this.labelText  += '<br/>' + this.attendeeLabelSource.company;
@@ -152,7 +152,7 @@ export class AttendeeComponent implements OnInit {
       //  if (this.label.getAddressObjectCount() == 0) {
        //     alert("Selected label does not have an address object on it. Select another label");
        //     return;
-     
+
         //updatePreview();
         //addressTextArea.value = getAddress();
         //printButton.disabled = false;
@@ -227,8 +227,6 @@ export class AttendeeComponent implements OnInit {
           }
       }
 
-
-  
   loadLabelFromWeb() {
       // use jQuery API to load label
       //$.get("Address.label", function(labelXml)
