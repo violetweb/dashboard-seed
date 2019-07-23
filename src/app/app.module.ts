@@ -11,10 +11,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-import {MatStepperModule} from '@angular/material/stepper'; 
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSelectModule} from '@angular/material/select'; 
-
+import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule, MatSortModule, MatFormFieldModule, MatTabsModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -35,6 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { LeadComponent } from './lead/lead.component';
+import { InteractionsComponent } from './interactions/interactions.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { LeadComponent } from './lead/lead.component';
     ProfileComponent,
     AttendeeComponent,
     SuppliersComponent,
-    LeadComponent
+    LeadComponent,
+    InteractionsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +80,9 @@ import { LeadComponent } from './lead/lead.component';
     MatTableModule,
     MatButtonToggleModule,
     MatStepperModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatAutocompleteModule,
+   
   ],
   providers: [
     PopupService
@@ -105,7 +108,9 @@ import { LeadComponent } from './lead/lead.component';
     MatButtonToggleModule,
     MatCardModule,
     MatStepperModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    MatAutocompleteModule,
+    
+    ]
 })
 export class AppModule { }

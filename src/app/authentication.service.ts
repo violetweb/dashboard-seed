@@ -18,8 +18,10 @@ export class AuthenticationService {
 
   url = environment.baseUrl;
 
+  token: string;
+
   constructor(private http: HttpClient) {
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUserSubject = new BehaviorSubject<any>(JSON.stringify(localStorage.getItem('currentUser')));
       this.currentUser = this.currentUserSubject.asObservable();
       //currentUser is actually a "token";
   }
@@ -27,6 +29,15 @@ export class AuthenticationService {
   public get currentUserValue(): User {
       return this.currentUserSubject.value;
   }
+
+
+  private getToken(): string {
+    if (!this.token) {
+      this.token = localStorage.getItem('currentUser');
+    }
+    return this.token;
+  }
+
 
 /*
   login(username: string, password: string) {
@@ -58,7 +69,9 @@ export class AuthenticationService {
             // login successful if there's a jwt token in the response
             if (data) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(data.access_token));
+                localStorage.setItem('currentUser', data.access_token);
+                //localStorage.setItem('client_id', client_id);
+               // localStorage.setItem('client_secret', client_secret);
                 this.currentUserSubject.next(data);
                 console.log(data);
             }
@@ -71,4 +84,6 @@ export class AuthenticationService {
     this.currentUser = null;
     localStorage.removeItem('currentUser');
   }
+
+
 }

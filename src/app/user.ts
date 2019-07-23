@@ -8,4 +8,9 @@ export class User {
     client_secret: string;
     grant_type: string;
     access_token: string;
+
+    getFullname() {
+        return this.firstname + ' ' + this.lastname;
+    }
+    
 }

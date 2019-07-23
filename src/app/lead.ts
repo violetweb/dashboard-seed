@@ -1,4 +1,4 @@
-export class Lead {
+export interface Lead {
     id: string;
     company: string;
     street_address: string;
@@ -11,6 +11,6 @@ export class Lead {
     title: string;
     email: string;
     phone: string;
-    ext: string; 
+    ext: string;
     lead_type: string;
 }

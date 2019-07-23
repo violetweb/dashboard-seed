@@ -29,28 +29,30 @@
       <div class="row justify-content-center">
         <div class="col col-lg-12">
               <mat-horizontal-stepper #stepper linear='true' (selectionChange)="onStepChange($event)">
-                <mat-step [stepControl]="recordNewForm">
+                <mat-step [completed]="stepOneDone" [stepControl]="recordNewForm">
+                    
                     <ng-template matStepLabel>Tell us who they are</ng-template>
-                    <form [formGroup]="recordNewForm">
+                    <form #newForm [formGroup]="recordNewForm">
 
                       <div class="row">
                           <div class="col-sm-12 p-4">
                               <mat-form-field>
-                                  <mat-label>Lead Type</mat-label>
-                                  <mat-select formControlName="lead_type">
+                                  <mat-label>Lead Type *</mat-label>
+                                  <mat-select formControlName="lead_type" [(value)]="selected">                                  
                                     <mat-option *ngFor="let lt of leadTypesSource" [value]="lt.id">
                                       {{ lt.lead_type }}
                                     </mat-option>
                                   </mat-select>
                                 </mat-form-field>
-                                
+                                                            
                           </div>
                       </div>
                         <div class="form-group">
                           <div class="row">
                           <div class="col-md-6">
-                            <label for="first_name">First / Last Name </label>
-                            <input type="text" formControlName="first_name" placeholder="John" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                            <label for="first_name">First / Last Name * </label>
+                            
+                            <input type="text" formControlName="first_name" placeholder="John" class="form-control" [ngClass]="{ 'is-invalid': f.first_name.errors }" />
                             
                             <div *ngIf="f.first_name.errors" class="invalid-feedback">
                                 <div *ngIf="f.first_name.errors.required">First Name is required</div>
@@ -58,8 +60,10 @@
                             </div>
                             <div class="col-md-6">
                           
-                                <label for="last_name">Last Name </label>
-                                <input type="text" formControlName="last_name" placeholder="Smith" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                                <label for="last_name">Last Name *</label>
+                                
+                                    <input type="text" formControlName="last_name" placeholder="Smith" class="form-control" [ngClass]="{ 'is-invalid': f.last_name.errors }" />
+                               
                                 <div *ngIf="f.last_name.errors" class="invalid-feedback">
                                     <div *ngIf="f.last_name.errors.required">Last Name is required</div>
                                 </div>
@@ -71,18 +75,22 @@
                          
                         <div class="row">
                             <div class="col-sm-12">
-                                <label for="company">Company</label>
-                                <input type="text" formControlName="company" placeholder="Company" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />                   
+                                <label for="company">Company *</label>
+                                <input type="text" formControlName="company" placeholder="Company" class="form-control" />                   
                                 <div *ngIf="f.company.errors" class="invalid-feedback">
                                     <div *ngIf="f.company.errors.required">Company is required</div>
                                 </div>
                             </div>
                          </div>
                           <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-10">
                                 <label for="street_address">Street Address</label>
                                 <input type="text" formControlName="street_address" placeholder="Street Address" class="form-control">
-                            </div>                          
+                            </div> 
+                            <div class="col-md-10">
+                                <label for="unit">Unit</label>
+                                <input type="text" formControlName="unit" placeholder="Unit" class="form-control">
+                            </div>                            
                           </div>
                        
                       <div class="row">
@@ -95,8 +103,8 @@
                                 <input type="text" formControlName="prov" placeholder="Province / State" class="form-control" />                                           
                           </div>
                           <div class="col-sm-12 col-md-3">
-                              <label for="zip_postal">Postal Code</label>
-                              <input type="text" formControlName="zip_postal" placeholder="Postal / Zip" class="form-control" />                                           
+                              <label for="postal_zip">Postal Code</label>
+                              <input type="text" formControlName="postal_zip" placeholder="Postal / Zip" class="form-control" />                                           
                           </div>
                     </div>
                   
@@ -126,7 +134,9 @@
                            </div>
                        </div>                 
                        <div>
+                          <button mat-button (click) = "stepper.reset()">Reset</button>
                           <button mat-button matStepperNext>Next</button>
+                          
                         </div>
                     <!--  <div class="form-group">
                            <button [disabled]="loading" class="btn btn-primary btn-lg btn-block">Submit</button>
@@ -134,48 +144,38 @@
                        </div> -->
                     </form>
                 </mat-step>
-                <mat-step [stepControl]="recordExistingForm">
-                  <form [formGroup]="recordExistingForm">
+                <mat-step [stepControl]="recordInteractionForm">
+                  <form [formGroup]="recordInteractionForm">
                     <ng-template matStepLabel>Describe Interaction</ng-template>
                     
             <div class="row">
-                <div class="col-md-3 ">
+                <div class="col-md-3">
                   <p class="pt-4">What they're interested in:</p>
+                  <div *ngFor="let interest of interestArray.controls" [formGroup]="interests" >
+                    <mat-checkbox [formControl]="interest.get('selected')">
+                      {{interest.get('name').value}}
+                    </mat-checkbox>
+                  </div>
                  
-                    <div class="form-check">              
-                      <input type="checkbox" name="interest" class="form-check-input"><label>Cables &amp; Accessories</label>
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" name="interest" class="form-check-input"><label>TCU</label>
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" name="interest" class="form-check-input"><label>HotRunner</label>
-                    </div>
-                 
-                    <div class="form-check">
-                      <input type="checkbox" name="interest" class="form-check-input"><label>Cleaners</label>
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" name="interest" class="form-check-input"><label>Heating</label>
-                    </div>
-                 
+                
                 </div>
                   <div class="col-md-5 border-left">
                     <p class="pt-4">How to Follow-up</p>
                       <div class="row">
                         <div class="col-md-6">
-                          <div class="form-check"><input type="checkbox" name="phone" class="form-check-input"/><label class="form-input-label">Phone Call</label></div>
-                          <div class="form-check"><input type="checkbox" name="visit" class="form-check-input"/><label class="form-input-label">Sales Visit</label></div>
-                          <div class="form-check"><input type="checkbox" name="demonstration" class="form-check-input"/><label class="form-input-label">Demonstration</label></div>
-                          <div class="form-check"> <input type="checkbox" name="quote" class="form-check-input"/><label class="form-input-label">Quotation</label></div>
-                          <div class="form-check">  <input type="checkbox" name="literature" class="form-check-input"/><label>Send Literature</label></div>
+                          
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="phone" class="form-check-input"/><label class="form-input-label">Phone Call</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="visit" class="form-check-input"/><label class="form-input-label">Sales Visit</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="demonstration" class="form-check-input"/><label class="form-input-label">Demonstration</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="quote" class="form-check-input"/><label class="form-input-label">Quotation</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="literature" class="form-check-input"/><label>Send Literature</label></div>
                         </div>
                         <div class="col-md-6">
-                          <div class="form-check"> <input type="checkbox" name="ready" class="form-check-input"/><label>Ready to Purchase</label></div>
-                          <div class="form-check"> <input type="checkbox" name="decision-maker" class="form-check-input"/><label>Makes Decisions</label></div>
-                          <div class="form-check">  <input type="checkbox" name="order-placed" class="form-check-input"/><label>Order Placed</label></div>       
-                          <div class="form-check">   <input type="checkbox" name="email" class="form-check-input"/><label>Email</label></div>
-                          <div class="form-check"><input type="checkbox" name="notes" class="form-check-input"/><label>See Notes</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="ready" class="form-check-input"/><label>Ready to Purchase</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="decision_maker" class="form-check-input"/><label>Makes Decisions</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="order_placed" class="form-check-input"/><label>Order Placed</label></div>       
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="email" class="form-check-input"/><label>Email</label></div>
+                          <div class="form-check"><input type="checkbox" name="followup[]" value="seenotes" class="form-check-input"/><label>See Notes</label></div>
                         </div>
                       </div>
                       <div class="row pt-4 border-top">
@@ -196,25 +196,25 @@
                   <div class="col-md-3 border-left">
                       <p class="pt-4">Biggest Problem:</p>
                         <div class="form-check">
-                            <input type="checkbox" name="problem" class="form-check-input" checked><label>None indicated</label>
+                            <input type="checkbox" name="problems[]" value="none" class="form-check-input" checked><label>None indicated</label>
                         </div>
                         <div class="form-check">              
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Water Flow</label>
+                          <input type="checkbox" name="problems[]" value="waterflow" class="form-check-input"><label>Water Flow</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Automation</label>
+                          <input type="checkbox" name="problems[]" value="automation" class="form-check-input"><label>Automation</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Temperature</label>
+                          <input type="checkbox" name="problems[]" value="temperature" class="form-check-input"><label>Temperature</label>
                         </div>                   
                         <div class="form-check">
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Flaws</label>
+                          <input type="checkbox" name="problems[]" value="flaws" class="form-check-input"><label>Flaws</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Cabling</label>
+                          <input type="checkbox" name="problems[]" value="cabling" class="form-check-input"><label>Cabling</label>
                         </div>
                         <div class="form-check">
-                          <input type="checkbox" name="problem" class="form-check-input"><label>Other (please explain):</label>
+                          <input type="checkbox" name="problems[]" value="other" class="form-check-input"><label>Other (please explain):</label>
                           <textarea name="problem-description"></textarea>
                         </div>                   
                     </div>
@@ -231,26 +231,28 @@
                       <div class="col-md-12">
                            <p>Additional Notes</p>
                            <div class="form-group">                      
-                               <textarea name="additional-notes" class="form-control form-control-lg">Put notes in here.</textarea>
+                               <textarea name="notes" class="form-control form-control-lg">Put notes in here.</textarea>
                                <button type="submit" class="btn btn-lg btn-primary">Submit this entry</button>
                            </div>
                        </div>
                     </div>
                   <div>
                     <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button matStepperNext>Next</button>
                   </div>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Review / Commit</ng-template>
                     <div class="row">
                       put a review system here... and then a final commit.
-                      <div class="col-md-12">
+                      <div class="col-md-12">   
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button (click)="stepper.reset()">Reset</button>
+                        <button mat-button matStepperNext>Next</button>
+                        
                     </div>
                     </div>
                   </mat-step>
+                 
               </mat-horizontal-stepper>
               
 
