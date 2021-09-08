@@ -52,10 +52,11 @@
                         <table matSort (matSortChange)="sortData($event)">
                           <tr>
                             <th mat-sort-header="id">Id</th>
-                            <th mat-sort-header="satisfaction">Satisfaction</th>
-                            <th mat-sort-header="productquality">Product Quality</th>
                             <th mat-sort-header="quotetimely">Quote Timely</th>
-                            <th>Contact Info</th>
+                            <th mat-sort-header="recommend">Recommend</th>
+                            <th mat-sort-header="productquality">Product Quality</th>                          
+                            <th mat-sort-header="satisfaction">Satisfaction</th>
+                            <th mat-sort-header="rankimprovement">Rank Improvement</th>
                             <th>Comments</th>
                             <th mat-sort-header="collected">Collected</th>
                           
@@ -63,11 +64,33 @@
                         
                           <tr *ngFor="let item of dataSource">
                             <td class="text-center">{{item.ID}}</td>
-                            <td class="text-center"><label class="label">
-                              {{item.satisfaction}}</label></td>
-                            <td class="text-center"><label class="label" [ngClass]="{'label-success': item.productquality === 'Yes', 'label-red': item.productquality === 'No'}"><i mat-icon *ngIf="item.productquality === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.productquality === 'No'" class="material-icons">clear</i></label></td>
                             <td class="text-center"><label class="label" [ngClass]="{'label-success': item.quotetimely === 'Yes', 'label-red': item.quotetimely === 'No'}"><i mat-icon *ngIf="item.quotetimely === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.quotetimely === 'No'" class="material-icons">clear</i></label></td>
-                            <td class="label" [ngClass]="{'label-success': item.contactinfo === 'Yes', 'label-red': item.contactinfo === 'No'}">{{item.contactinfo}}</td>
+                    
+                            <td class="text-center"><label class="label" [ngClass]="{'label-success': item.recommend === 'Yes', 'label-red': item.recommend === 'No'}"><i mat-icon *ngIf="item.recommend === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.recommend === 'No'" class="material-icons">clear</i>
+                              </label><br/>{{item.recommendcomment}}</td>
+                              <td class="text-center"><label class="label" [ngClass]="{'label-success': item.productquality === 'Yes', 'label-red': item.productquality === 'No'}"><i mat-icon *ngIf="item.productquality === 'Yes'" class="material-icons">done</i><i mat-icon *ngIf="item.productquality === 'No'" class="material-icons">clear</i></label>
+                                <br/> {{item.qualitycomment}}</td>
+                            <td class="text-center"><label class="label">
+                            
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Dissatisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Dissatisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Dissatisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Neutral'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Neutral'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Neutral'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Satisfied'" class="material-icons">star_rate</i>
+                              <i mat-icon *ngIf="item.satisfaction === 'Very Satisfied'" class="material-icons">star_rate</i> </label>
+                              <br/>
+                              {{item.satisfactioncomment}}</td>
+                            <td>{{item.rankimprovement}}</td>
+                     
                             <td>{{item.comments}}</td>
                             <td>{{item.collected}}</td>
                            </tr>

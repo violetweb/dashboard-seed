@@ -6,7 +6,6 @@ import { AlertService } from '../alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import * as dymo from 'dymo/DYMO.Label.Framework.3.0';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class AttendeeComponent implements OnInit {
     returnUrl: string;
     attendeeDataSource;
     attendeeLabelSource;
-    label: dymo.label;
+ 
     labelText: string;
     printers;
     printername: string;
@@ -123,11 +122,7 @@ export class AttendeeComponent implements OnInit {
 
        // loads all supported printers into a combo box 
      loadPrinters() {
-        this.printers = dymo.label.framework.getPrinters();
-        if (this.printers.length = 0) {
-          alert('No DYMO printers are installed. Install DYMO printers.');
-          return;
-        }
+        
 
         for (const p of this.printers) {
           if (p.printerType = 'LabelWriterPrinter') {
@@ -147,7 +142,7 @@ export class AttendeeComponent implements OnInit {
       // use jQuery API to load label
       //$.get("Address.label", function(labelXml)
       // {
-        this.label = dymo.label.framework.openLabelXml(this.getAddressLabelXml());
+     //   this.label = dymo.label.framework.openLabelXml(this.getAddressLabelXml());
         // check that label has an address object
       //  if (this.label.getAddressObjectCount() == 0) {
        //     alert("Selected label does not have an address object on it. Select another label");

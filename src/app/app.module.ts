@@ -35,7 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { LeadComponent } from './lead/lead.component';
-import { InteractionsComponent } from './interactions/interactions.component';
+
 
 
 @NgModule({
@@ -54,7 +54,6 @@ import { InteractionsComponent } from './interactions/interactions.component';
     AttendeeComponent,
     SuppliersComponent,
     LeadComponent,
-    InteractionsComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { AttendeeComponent } from './attendee/attendee.component';
 import { LeadComponent } from './lead/lead.component';
-import { InteractionsComponent } from './interactions/interactions.component';
+
 
 const routes: Routes = [
   { path: '',
@@ -36,10 +36,7 @@ const routes: Routes = [
         path: 'lead',
         component:  LeadComponent
       },
-      {
-        path: 'interactions',
-        component:  InteractionsComponent
-      }
+    
 
     ]
   },
